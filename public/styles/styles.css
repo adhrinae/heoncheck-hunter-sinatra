@@ -1,0 +1,13 @@
+.main.container {
+  margin-top: 7em;
+}
+
+.ui.footer.segment {
+  margin: 4em 0em 0em;
+  padding: 4em 0em;
+}
+
+#title {
+  font-size: large;
+  font-weight: 600;
+}
