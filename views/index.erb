@@ -12,7 +12,11 @@
 
 <body>
   <%= erb :header %>
+
   <div class="ui main text container" style="text-align: center;">
+    <div id="index_dimmer" class="ui inverted dimmer">
+      <div class="ui text loader">불러오는 중</div>
+    </div>
     <h2 class="ui header">알라딘 중고서점 검색기 - 헌책 헌터</h2>
     <p>
       원하시는 중고책이 어디에 있는지 빠르게 찾아볼 수 있도록 마련된 도우미입니다 <br/>
@@ -20,6 +24,15 @@
       (다만 시간이 조금 걸리는 점 양해바랍니다)
     </p>
   </div>
+
+  <div class="ui container" id="results">
+    <div id="results_dimmer" class="ui inverted dimmer">
+      <div class="ui text loader">불러오는 중</div>
+    </div>
+  </div>
+
   <%= erb :footer %>
+
+  <script src="scripts/app.js" charset="utf-8"></script>
 </body>
 </html>
