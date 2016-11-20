@@ -11,3 +11,33 @@
   font-size: large;
   font-weight: 600;
 }
+
+.result_container {
+  margin-top: 5em;
+}
+
+.ui.striped.fixed.table {
+  margin: 0;
+}
+
+th.book_stock, td.book_stock {
+  width: 4rem;
+}
+
+th.book_title, td.book_title {
+  width: 40%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+th.book_price, td.book_price {
+  width: 6rem;
+}
+
+th.book_author, td.book_author {
+  width: 20%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

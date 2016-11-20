@@ -1,8 +1,30 @@
 function searchBook() {
-  var bookName = document.getElementsByTagName("input")[0].value;
+  var bookTitle = document.getElementsByTagName("input")[0].value;
+  var indexPage = true;
+  var $dimmer = (function () {
+    if ($('#index_dimmer').length === 0) {
+      indexPage = false;
+      return $('#results_dimmer');
+    } else {
+      return $('#index_dimmer');
+    }
+  })();
 
-  $.get('/search', { title: bookName }, function (data) {
-    console.log(data);
+  $dimmer.dimmer('show');
+
+  $.get('/search', { title: bookTitle }, function (data) {
+    $dimmer.dimmer('hide');
+    $result_partial = $('#results');
+
+    if (indexPage === true) {
+      $('.ui.main.text.container').remove();
+    }
+
+    if (!$result_partial.hasClass('result_container')) {
+      $result_partial.addClass('result_container');
+    }
+
+    $result_partial.html(data);
   });
 };
 

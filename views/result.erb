@@ -1,0 +1,49 @@
+<div id="results_dimmer" class="ui inverted dimmer">
+  <div class="ui text loader">불러오는 중</div>
+</div>
+
+<div class="ui positive message">
+  전체 <%= results.values.reduce(0) { |sum, store| sum + store.size } %> 개의 검색 결과가 있습니다.
+</div>
+
+<% results.each do |store, list| %>
+
+<div class="ui segments">
+  <div class="ui blue inverted segment"><%= store %>의 검색 결과: <%= list.size %>개</div>
+  <% if list.empty? %>
+  <div id="no_results" class="ui segment">검색 결과가 없습니다</div>
+  <% else %>
+  <table class="ui striped fixed table">
+    <thead>
+      <th class="book_title">제목(부제)</th>
+      <th class="book_author">작가</th>
+      <th class="book_publisher">출판사</th>
+      <th class="book_pub_date">출간일</th>
+      <th class="book_price">최저가</th>
+      <th class="book_stock">재고</th>
+    </thead>
+    <tbody>
+      <% if list.empty? %>
+      <tr>
+        <td colspan="6">
+        </td>
+      </tr>
+      <% end %>
+
+      <% list.each do |book| %>
+      <tr>
+        <td class="book_title"><%= book[:title]+book[:sub_title] %></td>
+        <td class="book_author"><%= book[:author] %></td>
+        <td class="book_publisher"><%= book[:publisher] %></td>
+        <td class="book_pub_date"><%= book[:pub_date] %></td>
+        <td class="book_price"><%= book[:price] %></td>
+        <td class="book_stock"><%= book[:stock] %></td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+  <% end %>
+</div>
+
+<% end %>
