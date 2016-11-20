@@ -22,6 +22,7 @@
 
 th.book_stock, td.book_stock {
   width: 4rem;
+  font-weight: 600;
 }
 
 th.book_title, td.book_title {
@@ -33,6 +34,7 @@ th.book_title, td.book_title {
 
 th.book_price, td.book_price {
   width: 6rem;
+  font-weight: 600;
 }
 
 th.book_author, td.book_author {
