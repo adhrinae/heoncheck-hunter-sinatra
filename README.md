@@ -26,16 +26,16 @@
 
 ## Demo app
 
-    https://heoncheck.herokuapp.com/
+[Visit here](https://heoncheck.herokuapp.com/)
 
 ---
 
 ## 추가될(지도 모르는) 것들
 
-- 더 나은 디자인
-- 책의 정보를 바로 볼 수 있는 링크 추가
-- 정보가 길어서 생략된 책 내용을 볼 수 있는 기능
-- Refactoring
+[ ] 더 나은 디자인
+[ ] 책의 정보를 바로 볼 수 있는 링크 추가
+[ ] 정보가 길어서 생략된 책 내용을 볼 수 있는 기능
+[x] Refactoring
 
 ## LICENSE
 
