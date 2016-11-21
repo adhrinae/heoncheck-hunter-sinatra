@@ -4,7 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-SearchBook	app.rb	/^class SearchBook$/;"	c
-find	app.rb	/^  def find$/;"	f	class:SearchBook
-initialize	app.rb	/^  def initialize(book)$/;"	f	class:SearchBook
-query_book	app.rb	/^  def query_book(store_url)$/;"	f	class:SearchBook
+BookSearch	lib/book_search.rb	/^class BookSearch$/;"	c
+initialize	lib/book_search.rb	/^  def initialize(book)$/;"	f	class:BookSearch
+query_book	lib/book_search.rb	/^  def query_book(store_url)$/;"	f	class:BookSearch
+search	lib/book_search.rb	/^  def search$/;"	f	class:BookSearch
+searchBook	public/scripts/app.js	/^function searchBook() {$/;"	f
