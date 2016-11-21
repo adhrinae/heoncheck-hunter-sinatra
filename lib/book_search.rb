@@ -1,4 +1,3 @@
-require 'byebug'
 class BookSearch
   require "uri"
   require "mechanize"
@@ -21,48 +20,18 @@ class BookSearch
   end
 
   def search
-    STORE_LISTS.keys.each do |store|
+    STORE_LISTS.each do |store_code, store_name|
       # 개별 매장 검색 시작
-      store_url = URI.parse(STORE_URI + store)
-
-      search_results = query_book(store_url).css('div.ss_book_box')
-
-      # 매장별 결과는 배열로 리턴 (각 배열의 요소는 해쉬)
-      store_result = search_results.map do |book|
-        book_info = book.css('div.ss_book_list')[0]
-        price_info = book.css('div.ss_book_list')[1]
-
-        title = book_info.css('a.bo_l b').text
-        sub_title = book_info.css('span.ss_f_g2').text
-
-        author_list = book_info.css('ul > li')[-1].text.split(' | ')
-
-        author = author_list[0]
-        publisher = author_list[1]
-        pub_date = author_list[2]
-
-        price = price_info.css('span.ss_p2 b')[0].text
-        stock = price_info.css('span.ss_p4 b').text
-
-        {
-          title: title,
-          sub_title: sub_title,
-          author: author,
-          publisher: publisher,
-          pub_date: pub_date,
-          price: price,
-          stock: stock
-        }
-      end
-
-      @result[STORE_LISTS[store]] = store_result
+      search_results = get_books(store_code)
+      @result[store_name] = serialize_info(search_results)
     end
+
     @result
   end
 
   private
 
-  def query_book(store_url)
+  def query(store_url)
     agent = Mechanize.new
 
     store_index = agent.get(store_url)
@@ -73,5 +42,40 @@ class BookSearch
     query_result.encoding = 'EUC-KR'
 
     query_result
+  end
+
+  def get_books(store_code)
+    store_url = URI.parse(STORE_URI + store_code)
+    query(store_url).css('div.ss_book_box')
+  end
+
+  def serialize_info(search_results)
+    # 검색 결과가 있다면 검색 시작, 아니면 빈 배열 입력
+    return search_results if search_results.empty?
+
+    # 매장별 결과는 배열로 리턴 (각 배열의 요소는 해쉬)
+    search_results.map do |book|
+      book_info, price_info = book.css('div.ss_book_list')[0..1]
+
+      title = book_info.css('a.bo_l b').text
+      sub_title = book_info.css('span.ss_f_g2').text
+
+      author_list = book_info.css('ul > li')[-1].text.split(' | ')
+
+      author, publisher, pub_date = author_list[0..2]
+
+      price = price_info.css('span.ss_p2 b')[0].text
+      stock = price_info.css('span.ss_p4 b').text
+
+      {
+        title: title,
+        sub_title: sub_title,
+        author: author,
+        publisher: publisher,
+        pub_date: pub_date,
+        price: price,
+        stock: stock
+      }
+    end
   end
 end
