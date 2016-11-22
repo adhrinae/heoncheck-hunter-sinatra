@@ -5,7 +5,8 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 BookSearch	lib/book_search.rb	/^class BookSearch$/;"	c
+get_books	lib/book_search.rb	/^  def get_books(store_code)$/;"	f	class:BookSearch
 initialize	lib/book_search.rb	/^  def initialize(book)$/;"	f	class:BookSearch
-query_book	lib/book_search.rb	/^  def query_book(store_url)$/;"	f	class:BookSearch
+query	lib/book_search.rb	/^  def query(store_url)$/;"	f	class:BookSearch
 search	lib/book_search.rb	/^  def search$/;"	f	class:BookSearch
-searchBook	public/scripts/app.js	/^function searchBook() {$/;"	f
+serialize_info	lib/book_search.rb	/^  def serialize_info(search_results)$/;"	f	class:BookSearch

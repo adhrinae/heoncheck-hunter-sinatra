@@ -24,8 +24,7 @@ function searchBook() {
 
     $result_partial.html(data);
     $result_partial.transition('slide down in');
-  }
-  );
+  });
 };
 
 $(function () {

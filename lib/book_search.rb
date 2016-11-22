@@ -14,8 +14,9 @@ class BookSearch
   # 검색 기본 URI
   SEARCH_URI = "http://off.aladin.co.kr/usedstore/wsearchresult.aspx?SearchWord="
 
-  def initialize(book)
-    @book = book.encode('euc-kr', 'utf-8')
+  def initialize(book_title)
+    @book_title = book_title.encode('euc-kr', 'utf-8')
+    @agent = Mechanize.new
     @result = {}
   end
 
@@ -32,13 +33,11 @@ class BookSearch
   private
 
   def query(store_url)
-    agent = Mechanize.new
-
-    store_index = agent.get(store_url)
+    store_index = @agent.get(store_url)
     store_form = store_index.form('QuickSearch')
-    store_form['SearchWord'] = @book
+    store_form['SearchWord'] = @book_title
 
-    query_result = agent.submit(store_form)
+    query_result = @agent.submit(store_form)
     query_result.encoding = 'EUC-KR'
 
     query_result
@@ -50,7 +49,7 @@ class BookSearch
   end
 
   def serialize_info(search_results)
-    # 검색 결과가 있다면 검색 시작, 아니면 빈 배열 입력
+    # 검색 결과가 있다면 검색 시작, 아니면 빈 배열 그대로 리턴
     return search_results if search_results.empty?
 
     # 매장별 결과는 배열로 리턴 (각 배열의 요소는 해쉬)
