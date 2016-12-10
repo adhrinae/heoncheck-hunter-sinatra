@@ -29,7 +29,7 @@
 
 ## Demo app
 
-[Visit here](https://heoncheck.herokuapp.com/)
+~~[Visit here](https://heoncheck.herokuapp.com/)~~ Not available Until Feb, 2017 or later
 
 ---
 
